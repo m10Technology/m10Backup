@@ -1,3 +1,5 @@
+//Main Window
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <quaziputil.h>
