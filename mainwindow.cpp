@@ -226,23 +226,17 @@ void MainWindow::on_button3_released()
         performBackup(backupFrom,backupTo);
     }
     else{
-        QMessageBox msgBox;
-        msgBox.warning(this,"File Overwrite","Warning, you are about to overwrite a file! Do you wish to continue?");
-        msgBox.setStandardButtons(QMessageBox::Yes);
-        msgBox.setStandardButtons(QMessageBox::No);
-        int reg = msgBox.exec();
 
-        switch (reg){
-
-        case QMessageBox::Yes :
-            qDebug() << "You Pressed Yes!" << endl;
+          QMessageBox::StandardButton reply;
+          reply = QMessageBox::warning(this, "File Overwrite", "There is already a backup with this name, would you like to overwrite?",
+                                        QMessageBox::Yes|QMessageBox::No);
+          if (reply == QMessageBox::Yes) {
             performBackup(backupFrom,backupTo);
-            break;
-        case QMessageBox::No :
-            qDebug() << " You Pressed No" << endl;
-            break;
+          } else {
+            return;
+          }
 
-        }
+
     }
 
 }
